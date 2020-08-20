@@ -15,8 +15,6 @@ from pathlib import Path
 # 변경점
 import os
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -31,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'rt3q4irr6&dh0*o14@evc20y#bwi#l
 
 # 변경점 2
 # DEBUG = True
-DEBUG = False
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['*']
 
@@ -94,7 +92,6 @@ DATABASES = {
 }
 
 import dj_database_url
-
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
