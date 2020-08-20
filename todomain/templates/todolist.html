@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/todolist.css' %}">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/175f664301.js" crossorigin="anonymous"></script>
+</head>
+<body class="d">
+        <div class="toggleToDarkBar">
+            <div class="Darktext d">
+                Bright
+            </div>
+            <div class="toggleToDark">
+                <div class="slider"></div>
+            </div>
+            <div class="Darktext d">
+                Dark
+            </div>
+        </div>
+        <div class="todoTemplate">
+            <div class="todoHeader d">
+                <div class="date"></div>
+                <div class="days"></div>
+                <div class="todoCount">할 일 {{todolen}}개</div>
+            </div>
+            <div class="todolist d">
+                {% for todoitem in todoitems%}
+                <div class="todoItem d">
+                    <a class="d" href="{% url 'toggle' pk=todoitem.pk %}">
+                        <div class="check">
+                            {% if todoitem.check %}
+                            <i class="fas fa-check-circle"></i>
+                            {% else %}
+                            <i class="far fa-circle"></i>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <a class="d" href="#0">
+                        <div class="todoText">{{todoitem.content}}</div>
+                    </a>
+                    <a class="d" href="{% url 'delete' pk=todoitem.pk %}">
+                        <div class="remove"><i class="fas fa-trash-alt"></i></div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="todoInputBox close d">
+                <div class="toggleBtn d"><button><i class="fas fa-plus"></i></button> </div>
+                <div class="todoFormBox ">
+                    <form class="todoForm" method="POST" action="{% url 'create' %}">
+                        {% csrf_token %}
+                        <input class="todoInput close d" name="todoitem" type="text" placeholder="할 일 작성 후 enter 키를 누르세요">
+                    </form>
+                </div>
+            </div>
+        </div>
+    <script src="{% static 'js/date.js' %}"></script>
+    <script src="{% static 'js/toggle.js' %}"></script>
+</body>
+</html>
