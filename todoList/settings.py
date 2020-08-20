@@ -24,15 +24,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'rt3q4irr6&dh0*o14@evc20y#bwi#lp$yiwc^#@)tr80xl$l9u')
-
 # SECURITY WARNING: don't run with debug turned on in production!
-
 # 변경점 2
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
