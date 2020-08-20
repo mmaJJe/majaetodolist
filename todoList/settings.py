@@ -141,6 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(DJANGO_DIR, 'static'),
-]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# for /static/root/favicon.ico    
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'root') 
